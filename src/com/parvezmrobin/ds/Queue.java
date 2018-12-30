@@ -45,4 +45,8 @@ public class Queue<T> {
         System.arraycopy(this.queue, 0, newQueue, 0, this.queue.length);
         this.queue = newQueue;
     }
+
+    public boolean isEmpty(){
+        return this.back % this.queue.length == this.front % this.queue.length;
+    }
 }
