@@ -6,7 +6,7 @@ import com.parvezmrobin.ds.Stack;
 import org.jetbrains.annotations.NotNull;
 
 public class GraphAlgorithms {
-    private static boolean[] visisted;
+    private static boolean[] visited;
 
     /**
      * An iterative implementation of breadth first search with Queue
@@ -16,11 +16,11 @@ public class GraphAlgorithms {
      * @return The cost of $from to $to if there is a path, infinity otherwise
      */
     public static double bfs(@NotNull Graph graph, int from, int to){
-        visisted = new boolean[graph.getNumberOfNodes()];
+        visited = new boolean[graph.getNumberOfNodes()];
         Queue<double[]> queue = new Queue<>(graph.getNumberOfNodes());
         double[] pair = {from, 0};
         queue.enqueue(pair);
-        visisted[from] = true;
+        visited[from] = true;
 
         while (!queue.isEmpty()){
             double[] front = queue.dequeue();
@@ -30,8 +30,8 @@ public class GraphAlgorithms {
                 return cost;
             }
             for (int child: graph.getChildren(parent)){
-                if (!visisted[child]) {
-                    visisted[child] = true;
+                if (!visited[child]) {
+                    visited[child] = true;
                     pair = new double[]{child, cost + graph.getCost(parent, child)};
                     queue.enqueue(pair);
                 }
@@ -49,11 +49,11 @@ public class GraphAlgorithms {
      * @return The cost of $from to $to if there is a path, infinity otherwise
      */
     public static double dfs(@NotNull Graph graph, int from, int to){
-        visisted = new boolean[graph.getNumberOfNodes()];
+        visited = new boolean[graph.getNumberOfNodes()];
         Stack<double[]> stack = new Stack<>(graph.getNumberOfNodes());
         double[] pair = {from, 0};
         stack.push(pair);
-        visisted[from] = true;
+        visited[from] = true;
 
         while (!stack.isEmpty()){
             double[] front = stack.pop();
@@ -63,8 +63,8 @@ public class GraphAlgorithms {
                 return cost;
             }
             for (int child: graph.getChildren(parent)){
-                if (!visisted[child]) {
-                    visisted[child] = true;
+                if (!visited[child]) {
+                    visited[child] = true;
                     pair = new double[]{child, cost + graph.getCost(parent, child)};
                     stack.push(pair);
                 }
