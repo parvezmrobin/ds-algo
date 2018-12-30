@@ -1,13 +1,13 @@
 package com.parvezmrobin.ds.contracts;
 
 public interface GraphInterface {
-    public int getNumberOfNodes();
+    int getNumberOfNodes();
 
-    public void addPath(int from, int to, double cost);
+    void addPath(int from, int to, double cost);
 
-    public void removePath(int from, int to);
-    
-    public int[] getChildren(int parent);
+    void removePath(int from, int to);
 
-    public double getCost(int from, int to);
+    int[] getChildren(int parent);
+
+    double getCost(int from, int to);
 }
