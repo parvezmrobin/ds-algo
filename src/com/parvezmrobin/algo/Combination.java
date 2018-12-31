@@ -7,18 +7,18 @@ public class Combination {
     private static int[][] result;
     private static int index;
 
-    public static int[][] permutations(int[] array){
+    public static int[][] permutations(int[] array) {
         array = makeCopy(array);
         int fact = factorial(array.length);
         Combination.result = new int[fact][];
         Combination.index = 0;
 
-        recursivePermutation(array, 0, array.length-1);
+        recursivePermutation(array, 0, array.length - 1);
         return Combination.result;
     }
 
-    private static void recursivePermutation(int[] array, int l, int r){
-        if (l==r){
+    private static void recursivePermutation(int[] array, int l, int r) {
+        if (l == r) {
             Combination.result[Combination.index++] = makeCopy(array);
             return;
         }
@@ -30,7 +30,7 @@ public class Combination {
             array[i] = array[l];
             array[l] = temp;
 
-            recursivePermutation(array, l+1, r);
+            recursivePermutation(array, l + 1, r);
 
             // swap back
             temp = array[i];
@@ -39,4 +39,27 @@ public class Combination {
         }
     }
 
+    public static int[][] combinations(int[] array, int r) {
+        array = makeCopy(array);
+        int fact = factorial(array.length, r + 1) / factorial(array.length - r);
+        Combination.result = new int[fact][];
+        Combination.index = 0;
+
+        recursiveCombinations(array, r, new int[r], 0, 0);
+        return Combination.result;
+    }
+
+    private static void recursiveCombinations(int[] array, int r, int[] combination, int i, int j) {
+        if (i == r) {
+            Combination.result[Combination.index++] = makeCopy(combination);
+            return;
+        }
+        if (j >= array.length) {
+            return;
+        }
+
+        recursiveCombinations(array, r, combination, i, j + 1);
+        combination[i] = array[j];
+        recursiveCombinations(array, r, combination, i+1, j + 1);
+    }
 }

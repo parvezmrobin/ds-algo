@@ -16,6 +16,14 @@ public class Utility {
     }
 
     public static int factorial(int number) {
-        return (number == 2) ? number : number * factorial(number - 1);
+        return factorial(number, 1);
+    }
+
+    public static int factorial(int number, int base) {
+        if (number <= 1) return 1;
+
+        if (number < base) return 1;
+
+        return number * factorial(number - 1, base);
     }
 }
