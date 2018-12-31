@@ -10,6 +10,7 @@ class CombinationTest {
 
     @Test
     void permutations() {
+        // nPn tests
         int[][] combs = Combination.permutations(new int[]{1, 2, 3});
         int[][] expected = {
                 {1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 2, 1}, {3, 1, 2}
@@ -34,12 +35,24 @@ class CombinationTest {
 
         combs = Combination.permutations(new int[]{1});
         expected = new int[][]{{1},};
-
         assertArrayEquals(expected, combs);
 
         combs = Combination.permutations(new int[]{1, 2});
         expected = new int[][]{{1, 2}, {2, 1},};
+        assertArrayEquals(expected, combs);
 
+        // nPr tests
+
+        combs = Combination.permutations(new int[]{1, 2, 3}, 2);
+        expected = new int[][]{{1, 2}, {1, 3}, {2, 1}, {2, 3}, {3, 2}, {3, 1}};
+        assertArrayEquals(expected, combs);
+
+        combs = Combination.permutations(new int[]{1, 2, 3}, 1);
+        expected = new int[][]{{1}, {2}, {3}};
+        assertArrayEquals(expected, combs);
+
+        combs = Combination.permutations(new int[]{1, 2, 3}, 0);
+        expected = new int[][]{{}};
         assertArrayEquals(expected, combs);
     }
 

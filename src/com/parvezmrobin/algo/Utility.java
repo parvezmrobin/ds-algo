@@ -10,8 +10,12 @@ public class Utility {
     }
 
     public static int[] makeCopy(@NotNull int[] array) {
-        int[] copy = new int[array.length];
-        System.arraycopy(array, 0, copy, 0, array.length);
+        return makeCopy(array, array.length);
+    }
+
+    public static int[] makeCopy(@NotNull int[] array, int length) {
+        int[] copy = new int[length];
+        System.arraycopy(array, 0, copy, 0, length);
         return copy;
     }
 

@@ -8,23 +8,27 @@ public class Combination {
     private static int index;
 
     public static int[][] permutations(int[] array) {
+        return permutations(array, array.length);
+    }
+
+    public static int[][] permutations(int[] array, int r) {
         array = makeCopy(array);
-        int fact = factorial(array.length);
+        int fact = factorial(array.length) / factorial(array.length - r);
         Combination.result = new int[fact][];
         Combination.index = 0;
 
-        recursivePermutation(array, 0, array.length - 1);
+        recursivePermutation(array, 0, r);
         return Combination.result;
     }
 
     private static void recursivePermutation(int[] array, int l, int r) {
         if (l == r) {
-            Combination.result[Combination.index++] = makeCopy(array);
+            Combination.result[Combination.index++] = makeCopy(array, r);
             return;
         }
 
         int temp;
-        for (int i = l; i <= r; i++) {
+        for (int i = l; i < array.length; i++) {
             // swap
             temp = array[i];
             array[i] = array[l];
