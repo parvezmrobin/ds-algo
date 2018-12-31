@@ -8,4 +8,14 @@ public class Utility {
         System.arraycopy(array, 0, copy, 0, array.length);
         return copy;
     }
+
+    public static int[] makeCopy(@NotNull int[] array) {
+        int[] copy = new int[array.length];
+        System.arraycopy(array, 0, copy, 0, array.length);
+        return copy;
+    }
+
+    public static int factorial(int number) {
+        return (number == 2) ? number : number * factorial(number - 1);
+    }
 }
