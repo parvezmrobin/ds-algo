@@ -5,6 +5,8 @@ import com.parvezmrobin.ds.MaxHeap;
 import com.parvezmrobin.ds.MinHeap;
 import org.jetbrains.annotations.NotNull;
 
+import static com.parvezmrobin.algo.Utility.makeCopy;
+
 public class Sorting {
     public static double[] heapSort(double[] array) {
         return heapSort(array, false);
@@ -68,11 +70,5 @@ public class Sorting {
         }
 
         return array;
-    }
-
-    private static double[] makeCopy(@NotNull double[] array) {
-        double[] copy = new double[array.length];
-        System.arraycopy(array, 0, copy, 0, array.length);
-        return copy;
     }
 }
