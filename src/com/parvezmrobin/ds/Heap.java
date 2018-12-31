@@ -62,10 +62,18 @@ public abstract class Heap implements HeapInterface {
         if (this.heapSize == 0) {
             throw new IndexOutOfBoundsException("Heap is empty");
         }
-        double max = this.heap[0];
+        double top = this.heap[0];
         deleteTop();
         this.heapSize--;
-        return max;
+        return top;
+    }
+
+    @Override
+    public double top() {
+        if (this.heapSize == 0) {
+            throw new IndexOutOfBoundsException("Heap is empty");
+        }
+        return this.heap[0];
     }
 
     public double[] getHeap() {

@@ -10,4 +10,6 @@ public interface HeapInterface {
     void push(double value);
 
     double pop();
+
+    double top();
 }
