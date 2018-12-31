@@ -2,11 +2,21 @@ package com.parvezmrobin.algo;
 
 import com.parvezmrobin.ds.Heap;
 import com.parvezmrobin.ds.MaxHeap;
+import com.parvezmrobin.ds.MinHeap;
 import org.jetbrains.annotations.NotNull;
 
 public class Sorting {
     public static double[] heapSort(double[] array) {
-        Heap heap = new MaxHeap(array);
+        return heapSort(array, false);
+    }
+
+    public static double[] heapSort(double[] array, boolean reverse) {
+        Heap heap;
+        if (reverse) {
+            heap = new MaxHeap(array);
+        } else {
+            heap = new MinHeap(array);
+        }
         double[] sortedArray = new double[array.length];
         for (int i = 0; i < array.length; i++) {
             sortedArray[i] = heap.pop();
@@ -15,41 +25,49 @@ public class Sorting {
     }
 
     public static double[] bubbleSort(double[] array){
-        double[] copy = makeCopy(array);
+        return bubbleSort(array, false);
+    }
 
-        for (int i = 1; i < copy.length; i++) {
-            double temp = copy[i];
+    public static double[] bubbleSort(double[] array, boolean reverse){
+        array = makeCopy(array);
+
+        for (int i = 1; i < array.length; i++) {
+            double temp = array[i];
             int j;
             for (j = i; j > 0; j--) {
-                if (copy[j-1] > temp) {
-                    copy[j] = copy[j-1];
+                if ((reverse && array[j - 1] < temp) || !(reverse || array[j - 1] <= temp)){
+                    array[j] = array[j-1];
                 } else {
                     break;
                 }
             }
-            copy[j] = temp;
+            array[j] = temp;
         }
 
-        return copy;
+        return array;
     }
 
     public static double[] selectionSort(double[] array){
-        double[] copy = makeCopy(array);
+        return selectionSort(array, false);
+    }
 
-        for (int i = 0; i < copy.length - 1; i++) {
-            int min_index = i;
-            for (int j = i; j < copy.length; j++) {
-                if (copy[j] < copy[min_index]){
-                    min_index = j;
+    public static double[] selectionSort(double[] array, boolean reverse){
+        array = makeCopy(array);
+
+        for (int i = 0; i < array.length - 1; i++) {
+            int optimum_index = i;
+            for (int j = i; j < array.length; j++) {
+                if (!(reverse || array[j] >= array[optimum_index]) || (reverse && array[j] > array[optimum_index])){
+                    optimum_index = j;
                 }
             }
 
-            double temp = copy[i];
-            copy[i] = copy[min_index];
-            copy[min_index] = temp;
+            double temp = array[i];
+            array[i] = array[optimum_index];
+            array[optimum_index] = temp;
         }
 
-        return copy;
+        return array;
     }
 
     private static double[] makeCopy(@NotNull double[] array) {

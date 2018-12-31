@@ -9,13 +9,22 @@ class SortingTest {
     @Test
     void heapSort() {
         double[] array = {5, 4, 3, 2, 1};
-        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.heapSort(array));
+        assertArrayEquals(new double[]{1, 2, 3, 4, 5}, Sorting.heapSort(array));
         array = new double[]{3, 4, 2, 1, 5};
-        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.heapSort(array));
+        assertArrayEquals(new double[]{1, 2, 3, 4, 5}, Sorting.heapSort(array));
         array = new double[]{5, 2, 1, 2, 2};
-        assertArrayEquals(new double[]{5, 2, 2, 2, 1}, Sorting.heapSort(array));
+        assertArrayEquals(new double[]{1, 2, 2, 2, 5}, Sorting.heapSort(array));
         array = new double[]{1, 2, 3, 4, 5};
-        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.heapSort(array));
+        assertArrayEquals(new double[]{1, 2, 3, 4, 5}, Sorting.heapSort(array));
+
+        array = new double[]{5, 4, 3, 2, 1};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.heapSort(array, true));
+        array = new double[]{3, 4, 2, 1, 5};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.heapSort(array, true));
+        array = new double[]{5, 2, 1, 2, 2};
+        assertArrayEquals(new double[]{5, 2, 2, 2, 1}, Sorting.heapSort(array, true));
+        array = new double[]{1, 2, 3, 4, 5};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.heapSort(array, true));
     }
 
     @Test
@@ -28,6 +37,15 @@ class SortingTest {
         assertArrayEquals(new double[]{1, 2, 2, 2, 5}, Sorting.bubbleSort(array));
         array = new double[]{1, 2, 3, 4, 5};
         assertArrayEquals(new double[]{1, 2, 3, 4, 5}, Sorting.bubbleSort(array));
+
+        array = new double[]{5, 4, 3, 2, 1};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.bubbleSort(array, true));
+        array = new double[]{3, 4, 2, 1, 5};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.bubbleSort(array, true));
+        array = new double[]{5, 2, 1, 2, 2};
+        assertArrayEquals(new double[]{5, 2, 2, 2, 1}, Sorting.bubbleSort(array, true));
+        array = new double[]{1, 2, 3, 4, 5};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.bubbleSort(array, true));
     }
 
     @Test
@@ -40,5 +58,14 @@ class SortingTest {
         assertArrayEquals(new double[]{1, 2, 2, 2, 5}, Sorting.selectionSort(array));
         array = new double[]{1, 2, 3, 4, 5};
         assertArrayEquals(new double[]{1, 2, 3, 4, 5}, Sorting.selectionSort(array));
+
+        array = new double[]{5, 4, 3, 2, 1};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.selectionSort(array, true));
+        array = new double[]{3, 4, 2, 1, 5};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.selectionSort(array, true));
+        array = new double[]{5, 2, 1, 2, 2};
+        assertArrayEquals(new double[]{5, 2, 2, 2, 1}, Sorting.selectionSort(array, true));
+        array = new double[]{1, 2, 3, 4, 5};
+        assertArrayEquals(new double[]{5, 4, 3, 2, 1}, Sorting.selectionSort(array, true));
     }
 }
