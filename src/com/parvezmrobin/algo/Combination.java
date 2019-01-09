@@ -1,6 +1,7 @@
 package com.parvezmrobin.algo;
 
-import static com.parvezmrobin.algo.Utility.factorial;
+import org.jetbrains.annotations.NotNull;
+
 import static com.parvezmrobin.algo.Utility.makeCopy;
 
 public class Combination {
@@ -13,7 +14,7 @@ public class Combination {
 
     public static int[][] permutations(int[] array, int r) {
         array = makeCopy(array);
-        int fact = factorial(array.length) / factorial(array.length - r);
+        int fact = Utility.nPr(array.length, r);
         Combination.result = new int[fact][];
         Combination.index = 0;
 
@@ -45,7 +46,7 @@ public class Combination {
 
     public static int[][] combinations(int[] array, int r) {
         array = makeCopy(array);
-        int fact = factorial(array.length, r + 1) / factorial(array.length - r);
+        int fact = Utility.nCr(array.length, r);
         Combination.result = new int[fact][];
         Combination.index = 0;
 
@@ -64,6 +65,38 @@ public class Combination {
 
         recursiveCombinations(array, r, combination, i, j + 1);
         combination[i] = array[j];
-        recursiveCombinations(array, r, combination, i+1, j + 1);
+        recursiveCombinations(array, r, combination, i + 1, j + 1);
+    }
+
+    public static int[][] subsets(int[] array) {
+        return subsets(array, 0);
+    }
+
+    public static int[][] subsets(int[] array, int minSize) {
+        if (minSize < 0) {
+            throw new IllegalArgumentException("minSize must be a non-negative number.");
+        }
+        int numResults = (int) Math.pow(2, array.length);
+        Combination.result = new int[numResults][];
+        Combination.index = 0;
+        if (minSize == 0) {
+            Combination.result[0] = new int[0];
+            Combination.index = 1;
+        }
+
+        recursiveSubsets(array, minSize-1, new int[array.length], 0, 0);
+        int[][] copy = new int[Combination.index][];
+        System.arraycopy(Combination.result, 0, copy, 0, Combination.index);
+        return copy;
+    }
+
+    private static void recursiveSubsets(@NotNull int[] array, int minSize, int[] subset, int i, int j) {
+        for (int k = j; k < array.length; k++) {
+            subset[i] = array[k];
+            if (i >= minSize && i < array.length) {
+                Combination.result[Combination.index++] = makeCopy(subset, i + 1);
+            }
+            recursiveSubsets(array, minSize, subset, i + 1, k + 1);
+        }
     }
 }

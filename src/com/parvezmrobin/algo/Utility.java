@@ -30,4 +30,12 @@ public class Utility {
 
         return number * factorial(number - 1, base);
     }
+
+    public static int nCr(int n, int r) {
+        return factorial(n, r + 1) / factorial(n - r);
+    }
+
+    public static int nPr(int n, int r) {
+        return factorial(n) / factorial(n - r);
+    }
 }
