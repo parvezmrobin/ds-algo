@@ -84,7 +84,7 @@ public class Combination {
             Combination.index = 1;
         }
 
-        recursiveSubsets(array, minSize-1, new int[array.length], 0, 0);
+        recursiveSubsets(array, minSize - 1, new int[array.length], 0, 0);
         int[][] copy = new int[Combination.index][];
         System.arraycopy(Combination.result, 0, copy, 0, Combination.index);
         return copy;
@@ -97,6 +97,33 @@ public class Combination {
                 Combination.result[Combination.index++] = makeCopy(subset, i + 1);
             }
             recursiveSubsets(array, minSize, subset, i + 1, k + 1);
+        }
+    }
+
+    public static int[][] backtrack(int[] actions, int steps) {
+        if (steps < 0) {
+            throw new IllegalArgumentException("steps must be a non-negative number.");
+        }
+        if (actions.length == 0) {
+            throw new IllegalArgumentException("actions must be non-empty.");
+        }
+
+        int numResults = (int) Math.pow(actions.length, steps);
+        Combination.result = new int[numResults][];
+        Combination.index = 0;
+
+        recursiveBacktrack(actions, steps, new int[steps], 0);
+        return Combination.result;
+    }
+
+    private static void recursiveBacktrack(@NotNull int[] actions, int steps, int[] sequence, int i) {
+        if (i == steps) {
+            Combination.result[Combination.index++] = makeCopy(sequence);
+            return;
+        }
+        for (int action : actions) {
+            sequence[i] = action;
+            recursiveBacktrack(actions, steps, sequence, i + 1);
         }
     }
 }

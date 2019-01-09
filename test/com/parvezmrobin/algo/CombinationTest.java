@@ -94,7 +94,7 @@ class CombinationTest {
         expected = new int[][]{{}};
         assertArrayEquals(expected, combs);
 
-        combs = Combination.subsets(new  int[]{1});
+        combs = Combination.subsets(new int[]{1});
         expected = new int[][]{{}, {1}};
         assertArrayEquals(expected, combs);
 
@@ -124,12 +124,38 @@ class CombinationTest {
         expected = new int[][]{};
         assertArrayEquals(expected, combs);
 
-        combs = Combination.subsets(new  int[]{1}, 1);
+        combs = Combination.subsets(new int[]{1}, 1);
         expected = new int[][]{{1}};
         assertArrayEquals(expected, combs);
 
-        combs = Combination.subsets(new  int[]{1}, 2);
+        combs = Combination.subsets(new int[]{1}, 2);
         expected = new int[][]{};
+        assertArrayEquals(expected, combs);
+    }
+
+    @Test
+    void backtrack() {
+        int[][] combs = Combination.backtrack(new int[]{1, 2, 3}, 2);
+        int[][] expected = new int[][]{{1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}};
+        assertArrayEquals(expected, combs);
+
+        assertThrows(IllegalArgumentException.class, () -> Combination.backtrack(new int[0], 0));
+        assertThrows(IllegalArgumentException.class, () -> Combination.backtrack(new int[0], 1));
+
+        combs = Combination.backtrack(new int[]{1}, 0);
+        expected = new int[][]{{}};
+        assertArrayEquals(expected, combs);
+
+        combs = Combination.backtrack(new int[]{1}, 1);
+        expected = new int[][]{{1}};
+        assertArrayEquals(expected, combs);
+
+        combs = Combination.backtrack(new int[]{1, 2, 3}, 1);
+        expected = new int[][]{{1}, {2}, {3}};
+        assertArrayEquals(expected, combs);
+
+        combs = Combination.backtrack(new int[]{1}, 4);
+        expected = new int[][]{{1, 1, 1, 1}};
         assertArrayEquals(expected, combs);
     }
 }
